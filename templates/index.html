@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - RAG System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar d-flex flex-column">
+                <div class="sidebar-header">
+                    <h4 class="text-white mb-0">
+                        <i class="fas fa-robot me-2"></i>AI Chatbot
+                    </h4>
+                    <p class="text-muted small">RAG-Powered Assistant</p>
+                </div>
+                
+                <div class="sidebar-content flex-grow-1">
+                    <div class="new-chat-btn">
+                        <button class="btn btn-outline-light w-100" onclick="startNewChat()">
+                            <i class="fas fa-plus me-2"></i>New Chat
+                        </button>
+                    </div>
+                    
+                    <div class="chat-history mt-3">
+                        <h6 class="text-muted">Recent Chats</h6>
+                        <div id="chatHistory" class="chat-list">
+                            <!-- Chat history will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-footer">
+                    <div class="theme-toggle">
+                        <button class="btn btn-outline-light w-100" onclick="toggleTheme()">
+                            <i class="fas fa-moon me-2" id="themeIcon"></i>
+                            <span id="themeText">Dark Mode</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Chat Area -->
+            <div class="col-md-9 main-content d-flex flex-column">
+                <!-- Header -->
+                <div class="chat-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-0">AI Assistant</h5>
+                            <small class="text-muted">Powered by RAG System</small>
+                        </div>
+                        <div class="status-indicator">
+                            <span class="badge bg-success" id="statusBadge">
+                                <i class="fas fa-circle me-1"></i>Online
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Messages -->
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <div class="message bot-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <div class="message-text">
+                                    Hello! I'm your AI assistant powered by a RAG (Retrieval-Augmented Generation) system. 
+                                    I can help you with questions based on the documents in my knowledge base. 
+                                    How can I assist you today?
+                                </div>
+                                <div class="message-time">
+                                    <small class="text-muted">Just now</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Input -->
+                <div class="chat-input">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="messageInput" 
+                               placeholder="Type your message here..." 
+                               onkeypress="handleKeyPress(event)">
+                        <button class="btn btn-primary" type="button" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                        <div class="d-flex align-items-center">
+                            <div class="typing-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <span class="ms-2 text-muted">AI is typing...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">
+                        <i class="fas fa-heart text-danger"></i> 
+                        Created by heart <strong>Hasnain Muavia</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
